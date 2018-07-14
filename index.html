@@ -5,8 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+
+
+
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
+    
 
     <title>Project 1 - table</title>
 
@@ -75,7 +80,7 @@
         <span class="navbar-brand mb-0 h1 text-white">Days Inn</span>
       </nav>
       <div class="container" id="C1">
-          <h1 class="mx-auto">Complainant</h1>
+          <h1 class="mx-auto">Work Orders</h1>
       <table class="table border border-secondary">
             <thead>
               <tr>
@@ -87,7 +92,7 @@
                 <th scope="col">Resolved</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id ="table-body">
               <tr>
                 <th scope="row">101</th>
                 <td>Mark Otto</td>
@@ -122,15 +127,15 @@
         
         <div class="container" id="C2">
             <div class="form-group row">
-                <label for="example-number-input" class="col-2 col-form-label">Room Number:</label>
+                <label for="example-number-input" class="col-2 col-form-label" >Room Number:</label>
                 <div class="col-10">
-                  <input class="form-control" type="number" value="101" id="example-number-input">
+                  <input class="form-control" type="number" value="101" id = "roomnumber-input">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="example-text-input" class="col-2 col-form-label">Name:</label>
                 <div class="col-10">
-                  <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                  <input class="form-control" type="text" value="Artisanal kale" id="employee-name-input">
                 </div>
               </div>
 
@@ -142,10 +147,10 @@
                 </div>
               </div>
               <div class="form-group row">
-                  <label for="example-search-input" class="col-2 col-form-label">Complaint:</label>
+                  <label for="example-search-input" class="col-2 col-form-label" >Complaint:</label>
                   <div class="col-10">
                     <!-- <input class="form-control" type="search" value="How do I shoot web" id="example-search-input"> -->
-                    <textarea class="form-control" type="search" value="How do I shoot web" id="example-search-input"></textarea>
+                    <textarea class="form-control" type="search" value="How do I shoot web" id = "comment-input"></textarea>
                   </div>
                 </div>
                 <div class="form-group row">
@@ -161,18 +166,21 @@
                     </div>
                   </div>
               
-                  <button type="button" class="btn btn-primary col-md-3 justify-content-center">Add New Complaint</button>
+                  <button type="button" class="btn btn-primary col-md-3 justify-content-center" id = "submit">Add New Work Order </button>
               
         </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
-    <script type= "text/javascript">
-    
-    
-    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.2.0/firebase.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    <!-- load page scripts -->
+    <script src="firebaseinit.js" type="text/javascript"></script>
+    <script src="app.js"></script>
   </body>
 </html>
 
