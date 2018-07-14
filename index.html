@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <title>Project 1</title>
+    <title>Project 1 - table</title>
 
     <style type = "text/css">
         .navbar-light{
@@ -38,6 +38,29 @@
             background-color: #054D87;
             color: white;
         }
+        #C2{
+          margin-top: 30px;
+          border: 1px solid #054D87;
+          width:1000px;
+          padding-top: 30px;
+        }
+        button{
+          text-align: center;
+          margin-top: 20px;
+          margin-bottom: 20px;
+        }
+        #example-search-input{
+          height:100px;
+          /* display: none; */
+        
+        }
+        textarea{
+          height:100px;
+          width:800px;
+        }
+        .I1{
+          margin-left: 20px;
+        }
         /* table{
             width:900px;
         } */
@@ -57,8 +80,7 @@
             <thead>
               <tr>
                 <th scope="col">Room #</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
+                <th scope="col">Name</th>
                 <th scope="col">Date</th>
                 <th scope="col">Complaint</th>
                 <th scope="col">Shift</th>
@@ -68,50 +90,80 @@
             <tbody>
               <tr>
                 <th scope="row">101</th>
-                <td>Mark</td>
-                <td>Otto</td>
+                <td>Mark Otto</td>
+             
                 <td>7/12/18</td>
-                <td>Complaint Info</td>
-                <td><div class="dropdown">
-                        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          Dropdown link
-                        </a>
-                      
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div></td>
-                <td><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                <td><a href="index3.html">Complaint Info</a></td>
+                <td>Night</td>
+                <td><input type="checkbox" aria-label="Checkbox for following text input" class="I1"></td>
               </tr>
               <tr>
                 <th scope="row">102</th>
-                <td>Jacob</td>
-                <td>Thornton</td>
+                <td>Jacob Thorton</td>
                 <td>7/13/18</td>
                 <td>Complaint Info</td>
                 <td>Evening</td>
-                <td><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                <td><input type="checkbox" aria-label="Checkbox for following text input" class="I1"></td>
               </tr>
               <tr>
                 <th scope="row">103</th>
-                <td>Larry</td>
-                <td>Gislon</td>
+                <td>Larry Gislon</td>            
                 <td>7/13/18</td>
                 <td>Complaint Info</td>
-                <td>Evening</td>
-                <td><input type="checkbox" aria-label="Checkbox for following text input"></td>
+                <td>Morning</td>
+                <td><input type="checkbox" aria-label="Checkbox for following text input" class="I1"></td>
               </tr>
             </tbody>
           </table>
           
         </div>
 
-        <div class="container">
-        <button type="button" class="btn btn-primary col-md-3">Add New Complaint</button>
-        </div>
+
         
+        <div class="container" id="C2">
+            <div class="form-group row">
+                <label for="example-number-input" class="col-2 col-form-label">Room Number:</label>
+                <div class="col-10">
+                  <input class="form-control" type="number" value="101" id="example-number-input">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="example-text-input" class="col-2 col-form-label">Name:</label>
+                <div class="col-10">
+                  <input class="form-control" type="text" value="Artisanal kale" id="example-text-input">
+                </div>
+              </div>
+
+              
+              <div class="form-group row">
+                <label for="example-datetime-local-input" class="col-2 col-form-label">Date and time:</label>
+                <div class="col-10">
+                  <input class="form-control" type="datetime-local" value="2018-07-13T13:45:00" id="example-datetime-local-input">
+                </div>
+              </div>
+              <div class="form-group row">
+                  <label for="example-search-input" class="col-2 col-form-label">Complaint:</label>
+                  <div class="col-10">
+                    <!-- <input class="form-control" type="search" value="How do I shoot web" id="example-search-input"> -->
+                    <textarea class="form-control" type="search" value="How do I shoot web" id="example-search-input"></textarea>
+                  </div>
+                </div>
+                <div class="form-group row">
+                    <label for="example-datetime-local-input" class="col-2 col-form-label">Shift:</label>
+                    <div class="col-10">
+                        <select>	
+                            <option></option>
+                            <option>Morning</option>
+                            <option>Afternoon</option>
+                            <option>Evening</option>
+                            <option>Night</option>
+                          </select>
+                    </div>
+                  </div>
+              
+                  <button type="button" class="btn btn-primary col-md-3 justify-content-center">Add New Complaint</button>
+              
+        </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -123,3 +175,5 @@
     </script>
   </body>
 </html>
+
+<!-- //So instead of making a new file to add complaints, I just made a new section at the bottom to that. Is that okay? -->
