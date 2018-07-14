@@ -17,6 +17,8 @@ $("#submit").on("click", function(event) {
     // var category = $("#category-input").val();
     // var resolved = $("#resolution-input").val();
     var roomNumber = $("#roomnumber-input").val();
+    var shift = $("#shift-input").val();
+    console.log(shift);
 
     // puts input values into an object
     var complaints = {
@@ -24,6 +26,7 @@ $("#submit").on("click", function(event) {
         date: date.toUTCString(),
         comment: comment,
         roomNumber: roomNumber,
+        shift: shift
     };
 
 
@@ -35,7 +38,7 @@ $("#submit").on("click", function(event) {
   
 complaintsRef.on("child_added", function(snapshot, prevChildKey) {
     // debugger;
-    console.log(snapshot.val().name);
+    
 
     var tableBody = $("#table-body");
     var tableRow = $("<tr>");
@@ -48,8 +51,9 @@ complaintsRef.on("child_added", function(snapshot, prevChildKey) {
     a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("Complaint Info");
     complaintLink.append(a);
     tableRoomNumber.attr("scope", "row");
+    var tableShift = $("<td>").text(snapshot.val().shift)
 
-    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink);
+    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tableShift);
 
 });
 
