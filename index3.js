@@ -3,7 +3,7 @@ var complaintsRef = dataRef.ref("complaints");
 var complaintId = window.location.search.split('=')[1];
 
 complaintsRef.on("value", function(snapshot) {
-    debugger;
+
     $("#complaint").text(snapshot.val()[complaintId].comment);
     var complaintType = snapshot.val()[complaintId].type;
 
@@ -11,7 +11,7 @@ complaintsRef.on("value", function(snapshot) {
     var corsProxy = "https://cors-anywhere.herokuapp.com/"
     var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.059307,-118.4456441&radius=3000&type="
     + complaintType + "&key=AIzaSyBg67m4cRaN6Y8oX2xd6oGK22rYDPOpQMg"; 
-    debugger;
+
     $.ajax({
         url: corsProxy + queryURL,
         method: "GET"
