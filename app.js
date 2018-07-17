@@ -18,6 +18,7 @@ $("#submit").on("click", function(event) {
     // var resolved = $("#resolution-input").val();
     var roomNumber = $("#roomnumber-input").val();
     var shift = $("#shift-input").val();
+    var type = $("#type-input").val();
     console.log(shift);
 
     // puts input values into an object
@@ -26,7 +27,8 @@ $("#submit").on("click", function(event) {
         date: date.toUTCString(),
         comment: comment,
         roomNumber: roomNumber,
-        shift: shift
+        shift: shift,
+        type: type
     };
 
 
@@ -57,7 +59,7 @@ complaintsRef.on("child_added", function(snapshot, prevChildKey) {
 
 });
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=90808,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=90095,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
 $.ajax({
     url: queryURL,
     method: "GET"
