@@ -3,9 +3,15 @@ var complaintsRef = dataRef.ref("complaints");
 var complaintId = window.location.search.split('=')[1];
 
 complaintsRef.on("value", function(snapshot) {
-
-    $("#complaint").text(snapshot.val()[complaintId].comment);
+    var complaintComment = snapshot.val()[complaintId].comment;
+    var complaintDueDate = moment(snapshot.val()[complaintId].date).add(2,"days").format("MMM D YY, h:mm a");
+    var roomNumber = snapshot.val()[complaintId].roomNumber;
     var complaintType = snapshot.val()[complaintId].type;
+
+    $("#complaint").text(complaintComment);
+    $("#due-date").text(complaintDueDate);
+    $("#RN").text(roomNumber);
+    
 
 
     var corsProxy = "https://cors-anywhere.herokuapp.com/"
