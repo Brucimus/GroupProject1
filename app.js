@@ -58,7 +58,7 @@ complaintsRef.on("child_added", function(snapshot) {
 
 });
 
-var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=90095,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=90095,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
 $.ajax({
     url: queryURL,
     method: "GET"
