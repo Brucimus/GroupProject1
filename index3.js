@@ -2,8 +2,26 @@ var complaintsRef = dataRef.ref("complaints");
 
 var complaintId = window.location.search.split('=')[1];
 
+function listInfo() {
+    $("#complaint").empty();
+    //append attributes to compaint section
+    var commentDisplay = $("<p>").text("Problem: " + complaintComment);
+    var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
+
+    $("#complaint").append(commentDisplay).append(dueDateDisplay);
+}
+
 complaintsRef.on("value", function(snapshot) {
 
+    //function so that when value occurs they don't keep appending
+    function listInfo() {
+        $("#complaint").empty();
+        //append attributes to compaint section
+        var commentDisplay = $("<p>").text("Problem: " + complaintComment);
+        var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
+    
+        $("#complaint").append(commentDisplay).append(dueDateDisplay);
+    }
 
     $("#detailedHeading").text("Room: " + snapshot.val()[complaintId].roomNumber);
 
@@ -13,22 +31,19 @@ complaintsRef.on("value", function(snapshot) {
     var complaintType = snapshot.val()[complaintId].type;
 
     //append attributes to compaint section
-    var commentDisplay = $("<p>").text("Problem: " + complaintComment);
-    var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
-
-    $("#complaint").append(commentDisplay).append(dueDateDisplay);
+    listInfo();
 
     //pull top 5 places api in area in respect to type
     var corsProxy = "https://cors-anywhere.herokuapp.com/"
     var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.059307,-118.4456441&radius=3000&type="
     + complaintType + "&key=AIzaSyBg67m4cRaN6Y8oX2xd6oGK22rYDPOpQMg"; 
-    debugger;
+
     $.ajax({
         url: corsProxy + queryURL,
         method: "GET"
     })
     .then(function(data) {
-        debugger;
+
         //rename data results
         var results = data.results;
 
@@ -89,7 +104,7 @@ complaintsRef.on("value", function(snapshot) {
       event.preventDefault();
     
       complaintsRef.on("value", function(snapshot) {
-          // debugger;
+
           console.log(snapshot.val()[complaintId]);
           complaintsRef.child(complaintId).remove();
           location.href = "index.html";
