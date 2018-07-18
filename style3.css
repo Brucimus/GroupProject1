@@ -50,3 +50,14 @@ textarea {
   margin-top: 30px;
   background-color: #054D87;
 }
+.card{
+  margin-top: 20px;
+  background-color: #054D87;
+  border:1px solid #054D87;
+  padding: 10px;
+  padding-top: 15px;
+  color:white;
+}
+#detailedHeading{
+  width:200px;
+}
