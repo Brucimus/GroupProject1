@@ -10,7 +10,6 @@ $("#back").on("click", function(event) {
 
 
 $("#submit").on("click", function(event) {
-    alert("lol");
     event.preventDefault();
     
 
@@ -108,7 +107,7 @@ $("#submit").on("click", function(event) {
 
   $( "#priority-input" ).change(function() {
     event.preventDefault();
-    if ($(this).val() === "trump") {
+    if ($(this).val() === "Urgent") {
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=g06SMRYEUnHX7eXChQkxF6Ukkeov2Dgp&q=" + "trump explosion" + "&limit=" + 10 + "&offset=0&" + "Y" + "=Y&lang=en";
         $.ajax({
             url: queryURL,
