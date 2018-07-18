@@ -10,6 +10,7 @@ $("#back").on("click", function(event) {
 
 
 $("#submit").on("click", function(event) {
+    alert("lol");
     event.preventDefault();
     
 
@@ -20,9 +21,8 @@ $("#submit").on("click", function(event) {
     // var category = $("#category-input").val();
     // var resolved = $("#resolution-input").val();
     var roomNumber = $("#roomnumber-input").val();
-    var shift = $("#shift-input").val();
+    var priority = $("#priority-input").val();
     var type = $("#type-input").val();
-    console.log(shift);
 
     // puts input values into an object
     var complaints = {
@@ -30,7 +30,7 @@ $("#submit").on("click", function(event) {
         date: date.toUTCString(),
         comment: comment,
         roomNumber: roomNumber,
-        shift: shift,
+        priority: priority,
         type: type
     };
 
@@ -41,6 +41,101 @@ $("#submit").on("click", function(event) {
 
 
   });
+
+
+    $( "#type-input" ).change(function() {
+
+    var gifData = {
+        plumber: {
+            name: "plumber",
+            index: 2,
+        },
+        termite: {
+            name: "trump",
+            index: 4,
+        },
+        mechanic: {
+            name: "mario",
+            index: 7,
+        },
+        electrician: {
+            name: "electrician",
+            index: 0,
+        },
+        toilet: {
+            name: "toilet",
+            index: 0,
+        },
+        painter: {
+            name: "painter",
+            index: 0,
+        }
+    }
+
+
+    var choice = $(this).val();
+    category = gifData[choice].name;
+    index = gifData[choice].index;
+    console.log(category);
+    console.log(index);
+
+    event.preventDefault();
+
+    var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=g06SMRYEUnHX7eXChQkxF6Ukkeov2Dgp&q=" + category + "&limit=" + 10 + "&offset=0&" + "Y" + "=Y&lang=en";
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        gifArray = Object.values(response.data);
+        animateURLArray = [];
+        for (var i=0; i < 10; i++) {
+            animateURLArray.push(gifArray[i].images.fixed_width.url);
+        }
+    
+        var gifDiv = $("#gif");
+        
+            var pageDiv = $("<div>");
+            var image = $("<img>").attr("src", animateURLArray[index]);
+            image.addClass("gif");
+     
+            pageDiv.append(image);
+            gifDiv.html(pageDiv);
+          
+
+    });
+  });  
+
+  $( "#priority-input" ).change(function() {
+    event.preventDefault();
+    if ($(this).val() === "trump") {
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=g06SMRYEUnHX7eXChQkxF6Ukkeov2Dgp&q=" + "trump explosion" + "&limit=" + 10 + "&offset=0&" + "Y" + "=Y&lang=en";
+        $.ajax({
+            url: queryURL,
+            method: "GET"
+        }).then(function(response) {
+            console.log(response);
+            gifArray = Object.values(response.data);
+            animateURLArray = [];
+            for (var i=0; i < 10; i++) {
+                animateURLArray.push(gifArray[i].images.fixed_width.url);
+            }
+        
+            var gifDiv = $("#trump");
+            
+                var pageDiv = $("<div>");
+                var image = $("<img>").attr("src", animateURLArray[5]);
+                image.addClass("gif");
+         
+                pageDiv.append(image);
+                gifDiv.html(pageDiv);
+              
+        });
+
+    }
+    
+  });  
+
 
 
  $("#back").on("click", function(event) {

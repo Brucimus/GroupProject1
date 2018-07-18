@@ -16,9 +16,9 @@ $("#submit").on("click", function(event) {
     // var category = $("#category-input").val();
     // var resolved = $("#resolution-input").val();
     var roomNumber = $("#roomnumber-input").val();
-    var shift = $("#shift-input").val();
+    var priority = $("#priority-input").val();
     var type = $("#type-input").val();
-    console.log(shift);
+
 
     // puts input values into an object
     var complaints = {
@@ -26,7 +26,7 @@ $("#submit").on("click", function(event) {
         date: date.toUTCString(),
         comment: comment,
         roomNumber: roomNumber,
-        shift: shift,
+        priority: priority,
         type: type
     };
 
@@ -48,13 +48,14 @@ complaintsRef.on("child_added", function(snapshot) {
     var tableDate = $("<td>").text(snapshot.val().date);
     var complaintLink = $("<td>");
     var a = $("<a>")
-    a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("Complaint Info");
+    a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("More Details");
     complaintLink.append(a);
     tableRoomNumber.attr("scope", "row");
-    var tableShift = $("<td>").text(snapshot.val().shift)
+    var tablePriority = $("<td>").text(snapshot.val().priority)
     var tableType = $("<td>").text(snapshot.val().type)
+    console.log(snapshot.val().type);
 
-    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tableShift).append(tableType);
+    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tablePriority).append(tableType);
 
 });
 

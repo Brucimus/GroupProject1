@@ -67,13 +67,13 @@
         
           <div class="container" id="C2">
                 <div class="form-group row">
-                    <label for="example-number-input" class="col-2 col-form-label" >Room Number:</label>
+                    <label for="example-number-input" class="col-2 col-form-label" >Facility Number:</label>
                     <div class="col-10">
                       <input class="form-control" type="number" id = "roomnumber-input">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="example-text-input" class="col-2 col-form-label">Name:</label>
+                    <label for="example-text-input" class="col-2 col-form-label">Your Name:</label>
                     <div class="col-10">
                       <input class="form-control" type="text" id="employee-name-input">
                     </div>
@@ -81,24 +81,25 @@
     
                   <div class="form-group row">
     
-                      <label for="example-datetime-local-input" class="col-2 col-form-label">Type:</label>
+                      <label for="example-datetime-local-input" class="col-2 col-form-label">Call for Help:</label>
                       <div class="col-10">
     
                           <select id="type-input">	
-    
-                              <option></option>
-                              <option>plumber</option>
-                              <option>carpet cleaner</option>
-                              <option>wood inspector</option>
-                              <option>electrician</option>
-                              <option>toilet cleaner</option>
-                              <option>painter</option>
+                              <option class = "type-input" value = "mechanic"> mechanic </option>
+                              <option class = "type-input" value = "plumber">plumber</option>
+                              <option class = "type-input" value = "termite"> exterminator </option>
+                              <option class = "type-input" value = "electrician" >electrician</option>
+                              <option class = "type-input" value = "toilet" >toilet cleaner</option>
+                              <option class = "type-input" value = "painter">painter</option>
                             </select>
+
+                            <div id = "gif"> </div>
+
                       </div>
                   </div>
                   <div class="form-group row">
     
-                      <label for="example-search-input" class="col-2 col-form-label">Complaint:</label>
+                      <label for="example-search-input" class="col-2 col-form-label">Details: </label>
     
                       <div class="col-10">
                         <!-- <input class="form-control" type="search" value="How do I shoot web" id="example-search-input"> -->
@@ -106,15 +107,18 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                        <label for="example-datetime-local-input" class="col-2 col-form-label">Shift:</label>
+                        <label for="example-datetime-local-input" class="col-2 col-form-label">Priority:</label>
                         <div class="col-10">
-                            <select id ="shift-input">	
+                            <select id ="priority-input">	
                                 <option></option>
-                                <option>Morning</option>
-                                <option>Afternoon</option>
-                                <option>Evening</option>
-                                <option>Night</option>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High</option>
+                                <option value = "Urgent">URGENT</option>
                               </select>
+                        </div>
+                        
+
                         </div>
     
                     </div>
@@ -122,6 +126,7 @@
                   
                     <button type="button" class="btn btn-info" id = "submit">Add New Work Order </button>
                     <button  button type="button" class="btn btn-info" id="back"> Back </button>
+                    <div id="Urgent"></div>
             </div>
 
 
