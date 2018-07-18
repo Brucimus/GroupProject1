@@ -75,6 +75,14 @@ $.ajax({
 
 
 })
+
+$("#create").on("click", function(event) {
+    event.preventDefault();
+  
+    location.href = "index4.html";
+
+ });
+
 });
 
 //index3.js
