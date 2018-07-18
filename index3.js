@@ -2,22 +2,38 @@ var complaintsRef = dataRef.ref("complaints");
 
 var complaintId = window.location.search.split('=')[1];
 
+function listInfo() {
+    $("#complaint").empty();
+    //append attributes to compaint section
+    var commentDisplay = $("<p>").text("Problem: " + complaintComment);
+    var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
+
+    $("#complaint").append(commentDisplay).append(dueDateDisplay);
+}
+
 complaintsRef.on("value", function(snapshot) {
 
-    // debugger;
+    //function so that when value occurs they don't keep appending
+    function listInfo() {
+        $("#complaint").empty();
+        //append attributes to compaint section
+        var commentDisplay = $("<p>").text("Problem: " + complaintComment);
+        var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
+    
+        $("#complaint").append(commentDisplay).append(dueDateDisplay);
+    }
+
     $("#detailedHeading").text("Room: " + snapshot.val()[complaintId].roomNumber);
 
+    // create variables based on firebase object attributes
     var complaintComment = snapshot.val()[complaintId].comment;
     var complaintDueDate = moment(snapshot.val()[complaintId].date).add(2,"days").format("MMM D YY, h:mm a");
-    var roomNumber = snapshot.val()[complaintId].roomNumber;
     var complaintType = snapshot.val()[complaintId].type;
 
-    $("#complaint").text(complaintComment);
-    $("#due-date").text(complaintDueDate);
-    $("#RN").text(roomNumber);
-    
+    //append attributes to compaint section
+    listInfo();
 
-
+    //pull top 5 places api in area in respect to type
     var corsProxy = "https://cors-anywhere.herokuapp.com/"
     var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.059307,-118.4456441&radius=3000&type="
     + complaintType + "&key=AIzaSyBg67m4cRaN6Y8oX2xd6oGK22rYDPOpQMg"; 
@@ -28,56 +44,57 @@ complaintsRef.on("value", function(snapshot) {
     })
     .then(function(data) {
 
-        //clear gifs from display
+        //rename data results
         var results = data.results;
 
-        //iterate through pulled gifs to display Ratings and Gifs
+        //iterate through 5 of the closest places
         for (var i = 0; i < 5 ; i++) {
 
-            //create div to house a gif's properties
+            //create div to house a places properties
             var placesDiv = $("<div class='imageContainer card'>");
             var placesName = results[i].name;
-            var gifRating;
+            var placesRating;
             if (results[i].hasOwnProperty("rating")) {
-                gifRating = results[i].rating;
+                placesRating = results[i].rating;
             } else {
-                gifRating = "N/A"
+                placesRating = "N/A"
             }
 
-            // debugger;
-            var gifTitle;
+            // make sure there's an opening hours property in JSON 
+            var placesOpen;
             if (results[i].hasOwnProperty("opening_hours")) {
-                gifTitle = results[i].opening_hours.open_now;
+                placesOpen = results[i].opening_hours.open_now;
             } else {
-                gifTitle = "N/A";
+                placesOpen = "N/A";
             };
 
-            var gifLocation;
+            // make sure there's an locations property in JSON 
+            var placesLocation;
             if (results[i].hasOwnProperty("vicinity")) {
-                gifLocation = results[i].vicinity;
+                placesLocation = results[i].vicinity;
             } else {
-                gifLocation = "N/A";
+                placesLocation = "N/A";
             };                
-            // debugger;
+ 
+            //create paragraphs with info
             var nameDisplay = $("<p>").text("Name: " + placesName);
-            var ratingDisplay = $("<p>").text("Rating: " + gifRating); 
-            var titleDisplay = $("<p>").text("Open Now?: " + gifTitle); 
-            var addressDisplay = $("<p>").text("Address: " + gifLocation);           
-            // var animeImage = $("<img>");
+            var ratingDisplay = $("<p>").text("Rating: " + placesRating); 
+            var openDisplay = $("<p>").text("Open Now?: " + placesOpen); 
+            var addressDisplay = $("<p>").text("Address: " + placesLocation);           
 
-            //append gif image
+            //append name display
             placesDiv.append(nameDisplay);
             
-            //append gif title
-            placesDiv.append(titleDisplay);
+            //append open display
+            placesDiv.append(openDisplay);
 
             //append rating display
             placesDiv.append(ratingDisplay);
 
-            //append rating display
+            //append address display
             placesDiv.append(addressDisplay);
 
-            //display div of gif properties
+            //display div of places properties
             $("#placesContainer").append(placesDiv);
         }
 
@@ -87,13 +104,18 @@ complaintsRef.on("value", function(snapshot) {
       event.preventDefault();
     
       complaintsRef.on("value", function(snapshot) {
-          // debugger;
+
           console.log(snapshot.val()[complaintId]);
           complaintsRef.child(complaintId).remove();
           location.href = "index.html";
      });
 
-
-
    });
+
+   $("#back").on("click", function(event) {
+    event.preventDefault();
+    location.href = "index.html";
+
+ });
+ 
 });
