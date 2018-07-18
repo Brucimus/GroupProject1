@@ -110,7 +110,12 @@ complaintsRef.on("value", function(snapshot) {
           location.href = "index.html";
      });
 
-
-
    });
+
+   $("#back").on("click", function(event) {
+    event.preventDefault();
+    location.href = "index.html";
+
+ });
+ 
 });
