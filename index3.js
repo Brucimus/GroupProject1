@@ -38,6 +38,8 @@ complaintsRef.on("value", function(snapshot) {
     var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.059307,-118.4456441&radius=3000&type="
     + complaintType + "&key=AIzaSyBg67m4cRaN6Y8oX2xd6oGK22rYDPOpQMg"; 
 
+    console.log(queryURL);
+
     $.ajax({
         url: corsProxy + queryURL,
         method: "GET"
@@ -46,6 +48,7 @@ complaintsRef.on("value", function(snapshot) {
 
         //rename data results
         var results = data.results;
+        console.log(results);
 
         //iterate through 5 of the closest places
         for (var i = 0; i < 5 ; i++) {
