@@ -3,6 +3,10 @@ var complaintsRef = dataRef.ref("complaints");
 var complaintId = window.location.search.split('=')[1];
 
 complaintsRef.on("value", function(snapshot) {
+
+    // debugger;
+    $("#detailedHeading").text("Room: " + snapshot.val()[complaintId].roomNumber);
+
     var complaintComment = snapshot.val()[complaintId].comment;
     var complaintDueDate = moment(snapshot.val()[complaintId].date).add(2,"days").format("MMM D YY, h:mm a");
     var roomNumber = snapshot.val()[complaintId].roomNumber;
@@ -78,4 +82,18 @@ complaintsRef.on("value", function(snapshot) {
         }
 
     });
+
+    $("#resolved").on("click", function(event) {
+      event.preventDefault();
+    
+      complaintsRef.on("value", function(snapshot) {
+          // debugger;
+          console.log(snapshot.val()[complaintId]);
+          complaintsRef.child(complaintId).remove();
+          location.href = "index.html";
+     });
+
+
+
+   });
 });

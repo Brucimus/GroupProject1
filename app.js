@@ -6,7 +6,6 @@ $(document).ready(function() {
 
 
 $("#submit").on("click", function(event) {
-    alert("lol");
     event.preventDefault();
     
 
@@ -38,10 +37,9 @@ $("#submit").on("click", function(event) {
 
   });
   
-complaintsRef.on("child_added", function(snapshot, prevChildKey) {
+complaintsRef.on("child_added", function(snapshot) {
     // debugger;
     
-
     var tableBody = $("#table-body");
     var tableRow = $("<tr>");
     var tableName = $("<td>").text(snapshot.val().name);
@@ -54,8 +52,9 @@ complaintsRef.on("child_added", function(snapshot, prevChildKey) {
     complaintLink.append(a);
     tableRoomNumber.attr("scope", "row");
     var tableShift = $("<td>").text(snapshot.val().shift)
+    var tableType = $("<td>").text(snapshot.val().type)
 
-    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tableShift);
+    tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tableShift).append(tableType);
 
 });
 
