@@ -4,30 +4,29 @@ var complaintId = window.location.search.split('=')[1];
 
 complaintsRef.on("value", function(snapshot) {
 
-    // debugger;
+
     $("#detailedHeading").text("Room: " + snapshot.val()[complaintId].roomNumber);
 
     var complaintComment = snapshot.val()[complaintId].comment;
     var complaintDueDate = moment(snapshot.val()[complaintId].date).add(2,"days").format("MMM D YY, h:mm a");
-    var roomNumber = snapshot.val()[complaintId].roomNumber;
     var complaintType = snapshot.val()[complaintId].type;
 
-    $("#complaint").text(complaintComment);
-    $("#due-date").text(complaintDueDate);
-    $("#RN").text(roomNumber);
-    
+    var commentDisplay = $("<p>").text("Problem: " + complaintComment);
+    var dueDateDisplay = $("<p>").text("Due Date: " + complaintDueDate);
+
+    $("#complaint").append(commentDisplay).append(dueDateDisplay);
 
 
     var corsProxy = "https://cors-anywhere.herokuapp.com/"
     var queryURL = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=34.059307,-118.4456441&radius=3000&type="
     + complaintType + "&key=AIzaSyBg67m4cRaN6Y8oX2xd6oGK22rYDPOpQMg"; 
-
+    debugger;
     $.ajax({
         url: corsProxy + queryURL,
         method: "GET"
     })
     .then(function(data) {
-
+        debugger;
         //clear gifs from display
         var results = data.results;
 
