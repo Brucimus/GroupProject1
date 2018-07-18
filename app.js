@@ -58,6 +58,23 @@ complaintsRef.on("child_added", function(snapshot) {
 
 });
 
+var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=90095,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
+$.ajax({
+    url: queryURL,
+    method: "GET"
+})
+.then(function(data) {
+    var favDiv = $("<div class='imageContainer card'>");
+
+    //get weather info
+    var getWeather = data.weather[0].main;
+    var getTemp = 1.8*(data.main.temp - 273.15) + 32;
+    var roundTemp = Math.round(getTemp);
+
+    $("#weather").text(" " + getWeather + ", Temp: " + roundTemp + String.fromCharCode(176));
+
+
+})
 });
 
 //index3.js
