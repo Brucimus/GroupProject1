@@ -39,9 +39,10 @@ $("#submit").on("click", function(event) {
   
 complaintsRef.on("child_added", function(snapshot) {
     // debugger;
-    
+
     var tableBody = $("#table-body");
     var tableRow = $("<tr>");
+    tableRow.attr("class", "lol")
     var tableName = $("<td>").text(snapshot.val().name);
     var tableComment = $("<td>").text("comment");
     var tableRoomNumber = $("<th>").text(snapshot.val().roomNumber);
@@ -51,8 +52,17 @@ complaintsRef.on("child_added", function(snapshot) {
     a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("More Details");
     complaintLink.append(a);
     tableRoomNumber.attr("scope", "row");
-    var tablePriority = $("<td>").text(snapshot.val().priority)
-    var tableType = $("<td>").text(snapshot.val().type)
+    var tablePriority = $("<td>").text(snapshot.val().priority);
+    var tableType = $("<td>").text(snapshot.val().type);
+    if(snapshot.val().priority === "Urgent") {
+        tableName.css("background-color", "#FFB6C1");
+        tableRoomNumber.css("background-color", "#FFB6C1");
+        complaintLink.css("background-color", "#FFB6C1");
+        tablePriority.css("background-color", "#FFB6C1");
+        tableDate.css("background-color", "#FFB6C1");
+        tableType.css("background-color", "#FFB6C1");
+    }
+    
     console.log(snapshot.val().type);
 
     tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tablePriority).append(tableType);
