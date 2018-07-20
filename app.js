@@ -40,6 +40,10 @@ $("#submit").on("click", function(event) {
 complaintsRef.on("child_added", function(snapshot) {
     // debugger;
 
+    // var typeChosen = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+
+
+
     var tableBody = $("#table-body");
     var tableRow = $("<tr>");
     tableRow.attr("class", "lol")
@@ -54,20 +58,78 @@ complaintsRef.on("child_added", function(snapshot) {
     tableRoomNumber.attr("scope", "row");
     var tablePriority = $("<td>").text(snapshot.val().priority);
     var tableType = $("<td>").text(snapshot.val().type);
-    if(snapshot.val().priority === "Urgent") {
-        tableName.css("background-color", "#FFB6C1");
-        tableRoomNumber.css("background-color", "#FFB6C1");
-        complaintLink.css("background-color", "#FFB6C1");
-        tablePriority.css("background-color", "#FFB6C1");
-        tableDate.css("background-color", "#FFB6C1");
-        tableType.css("background-color", "#FFB6C1");
-    }
     
     console.log(snapshot.val().type);
 
     tableBody.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tablePriority).append(tableType);
 
 });
+
+
+
+$( "#type-input" ).change(function() {
+    event.preventDefault();
+    var type = $(this).val();
+    $("#table-body1").show();
+
+    complaintsRef.on("value", function(snapshot) {
+        // debugger;
+    
+        // var typeChosen = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
+        
+        var arrayLol = _.pairs(snapshot.val());
+        console.log(arrayLol);
+        var typeChosen = _.filter(arrayLol, function(num){ return num[1].priority === type; });
+        console.log(typeChosen);
+        var tableBody = $("#table-body")
+        tableBody.hide();
+        var tableBody1 = $("#table-body1").empty();
+
+
+
+        for (i=0; i<typeChosen.length; i++) {
+
+            
+            var tableRow = $("<tr>");
+            tableRow.attr("class", "lol")
+            var tableName = $("<td>").text(typeChosen[i][1].name);
+            var tableComment = $("<td>").text("comment");
+            var tableRoomNumber = $("<th>").text(typeChosen[i][1].roomNumber);
+            var tableDate = $("<td>").text(typeChosen[i][1].date);
+            var complaintLink = $("<td>");
+            var a = $("<a>")
+            a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("More Details");
+            complaintLink.append(a);
+            tableRoomNumber.attr("scope", "row");
+            var tablePriority = $("<td>").text(typeChosen[i][1].priority);
+            var tableType = $("<td>").text(typeChosen[i][1].type);
+
+            tableBody1.append(tableRow).append(tableRoomNumber).append(tableName).append(tableDate).append(complaintLink).append(tablePriority).append(tableType);
+
+
+        }
+
+    });
+    
+
+
+  });
+
+
+  $("#reset1").on("click", function(event) {
+    event.preventDefault();
+    $("#table-body1").hide();
+    $("#table-body").show();
+
+  });
+
+
+
+
+
+
+
+
 
 var queryURL = "https://cors-anywhere.herokuapp.com/http://api.openweathermap.org/data/2.5/weather?zip=90095,us&APIkey=5f04c7bb7018ef79c5ef0a0924d8ddb6";   
 $.ajax({
@@ -96,9 +158,3 @@ $("#create").on("click", function(event) {
 
 });
 
-//index3.js
-/*
-    var complaintId = window.location.search.split('=')[1];
-    complaintsRef
-
-*/
