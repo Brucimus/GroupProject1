@@ -77,10 +77,11 @@ $( "#type-input" ).change(function() {
     
         // var typeChosen = _.filter([1, 2, 3, 4, 5, 6], function(num){ return num % 2 == 0; });
         
+        console.log(snapshot.val());
         var arrayLol = _.pairs(snapshot.val());
         console.log(arrayLol);
         var typeChosen = _.filter(arrayLol, function(num){ return num[1].priority === type; });
-        console.log(typeChosen);
+        console.log(typeChosen[0][0]);
         var tableBody = $("#table-body")
         tableBody.hide();
         var tableBody1 = $("#table-body1").empty();
@@ -98,7 +99,7 @@ $( "#type-input" ).change(function() {
             var tableDate = $("<td>").text(typeChosen[i][1].date);
             var complaintLink = $("<td>");
             var a = $("<a>")
-            a.attr("href", "index3.html?complaint-id=" + snapshot.key).text("More Details");
+            a.attr("href", "index3.html?complaint-id=" + typeChosen[i][0]).text("More Details");
             complaintLink.append(a);
             tableRoomNumber.attr("scope", "row");
             var tablePriority = $("<td>").text(typeChosen[i][1].priority);
