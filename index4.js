@@ -60,7 +60,7 @@ $("#submit").on("click", function(event) {
             var gifDiv = $("#trump");
             
                 var pageDiv = $("<div>");
-                var image = $("<img>").attr("src", animateURLArray[0]);
+                var image = $("<img>").attr("src", animateURLArray[2]);
                 image.addClass("gif");
          
                 pageDiv.append(image);
